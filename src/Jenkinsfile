@@ -1,11 +1,5 @@
 pipeline {
-    // agent any
-    agent {
-        dockerfile {
-            dir 'src/'
-            args '--platform=linux/amd64 --name "${BUILD_TAG}"'// -v ${WORKSPACE}:/usr/src -v ${JOB_BASE_NAME}:/usr/src/node_modules'
-        }
-    }
+    agent any
     environment {
         HOME='.'
         HEADLESS=1
@@ -16,21 +10,12 @@ pipeline {
                 sh "env"
             }
         }
-        stage('Prep') {
-            steps {
-                dir('src'){
-                    sh 'npm install'
-//                     stash includes: 'node_modules', name: 'node_modules'
-                }
-            }
-        }
         stage('Test') {
             steps {
                 dir('src'){
-                    sh 'node --version'
                     sh 'pwd'
                     sh 'ls'
-                    sh "npm run wdio-headless"
+                    sh "docker run --name ${BUILD_TAG} --platform=linux/amd64 -v ${WORKSPACE}/src:/usr/src -v node_modules_${JOB_BASE_NAME}:/usr/src/node_modules -w /usr/src duquesnay/wdiobase:1.0 bash -c \"npm install && npm run wdio-headless\""
                 }
 
             }
