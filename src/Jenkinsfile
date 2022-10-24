@@ -3,7 +3,7 @@ pipeline {
     agent {
         dockerfile {
             dir 'src/'
-            args '--platform=linux/amd64'// -v ${WORKSPACE}:/usr/src -v ${JOB_BASE_NAME}:/usr/src/node_modules'
+            args '--platform=linux/amd64 --name "${BUILD_TAG}"'// -v ${WORKSPACE}:/usr/src -v ${JOB_BASE_NAME}:/usr/src/node_modules'
         }
     }
     environment {

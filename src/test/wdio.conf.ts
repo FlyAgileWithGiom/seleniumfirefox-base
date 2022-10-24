@@ -144,10 +144,10 @@ export const config: Options.Testrunner = {
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 60000,
+    connectionRetryTimeout: 10000,
     //
     // Default request retries count
-    connectionRetryCount: 2,
+    connectionRetryCount: 1,
     //
     // Test runner services
     // Services take over a specific job you don't want to take care of. They enhance
