@@ -19,7 +19,7 @@ USER jenkins
 
 WORKDIR /home/jenkins/src
 
-COPY --chown=jenkins ./package.json ./
+COPY --chown=jenkins src/package.json ./
 
 ENV HOME=/home/jenkins/
-RUN npm install 
+RUN npm install
