@@ -2,7 +2,7 @@ pipeline {
     // agent any
     agent {
         dockerfile {
-            args '--platform=linux/amd64 -v ${WORKSPACE}:/usr/src -v ${JOB_BASE_NAME}:/usr/src/node_modules'
+            args '--platform=linux/amd64'// -v ${WORKSPACE}:/usr/src -v ${JOB_BASE_NAME}:/usr/src/node_modules'
         }
     }
     environment {
@@ -17,20 +17,20 @@ pipeline {
         }
         stage('Prep') {
             steps {
-                dir('src'){
+
                     sh 'npm install'
 //                     stash includes: 'node_modules', name: 'node_modules'
-                }
+
             }
         }
         stage('Test') {
             steps {
-                dir('src'){
+
                     sh 'node --version'
                     sh 'pwd'
                     sh 'ls'
                     sh "npm run wdio-headless"
-                }
+
 
             }
         }
