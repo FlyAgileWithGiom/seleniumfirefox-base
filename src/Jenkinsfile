@@ -15,7 +15,7 @@ pipeline {
                 dir('src'){
                     sh 'pwd'
                     sh 'ls'
-                    sh "docker run -t --name ${BUILD_TAG} --platform=linux/amd64 -v ${WORKSPACE}/src:/usr/src -v node_modules_${JOB_BASE_NAME}:/usr/src/node_modules -w /usr/src duquesnay/wdiobase:1.0 bash -c \"npm install && npm run wdio-headless\""
+                    sh "docker run -t --name ${BUILD_TAG} -u ${UID}:${GID} -v ${WORKSPACE}/src:/usr/src -v node_modules_${JOB_BASE_NAME}:/usr/src/node_modules -w /usr/src duquesnay/wdiobase:1.0 bash -c \"npm install && npm run wdio-headless\""
                 }
 
             }
