@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:16.13.1-bullseye-slim
+FROM node:16.13.1-bullseye-slim
 
 # works (if needed)
 RUN apt update && \
